@@ -21,3 +21,12 @@ export const getCommentByArticleId = (id) =>{
         return data.comments
     })
 }
+
+export const VoteByArticleId = (id, voteData) =>{
+    console.log(voteData)
+    console.log(id)
+    return articlesApi.patch(`/articles/${id}`, voteData).then(({data})=>{
+        return data.comments
+
+    })
+}
