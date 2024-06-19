@@ -44,3 +44,10 @@ export const addCommentByArticleId = (id,commentData, username) =>{
         return data.comments;
     })
 }
+
+export const removeCommentByCommentId = (commentId) =>{
+    console.log(commentId)
+    return articlesApi.delete(`/comments/${commentId}`).then(()=>{
+        alert("Comment deleted.")
+    })
+}
