@@ -49,9 +49,13 @@ export const removeCommentByCommentId = (commentId) =>{
     console.log(commentId)
     return articlesApi.delete(`/comments/${commentId}`).then(()=>{
         alert("Comment deleted.")
+
     })}
 
 export const getTopics = () => {
     return articlesApi.get(`/topics`).then(({ data }) => {
     return data.topics;
         });}
+
+    })
+}
