@@ -19,7 +19,7 @@ const FullArticlePage = () =>{
         if(change === +1){
         let voteData = {inc_votes:1}
         setVotes((currentVotes)=>{return currentVotes+1})
-        voteByArticleIdoteByArticleId(article_id, voteData)
+        voteByArticleId(article_id, voteData)
         .then(()=>{
             console.log('Upvote successful')
         })

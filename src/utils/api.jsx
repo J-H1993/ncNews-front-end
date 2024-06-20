@@ -10,8 +10,8 @@ export const getAllUsers = () =>{
     })
 }
 
-export const getAllArticles = () => {
-    return articlesApi.get("/articles").then(({data})=>{
+export const getAllArticles = (topic) => {
+    return articlesApi.get("/articles", {params:{topic:topic}}).then(({data})=>{
         return data.articles;
     });
 };
@@ -44,3 +44,14 @@ export const addCommentByArticleId = (id,commentData, username) =>{
         return data.comments;
     })
 }
+
+export const removeCommentByCommentId = (commentId) =>{
+    console.log(commentId)
+    return articlesApi.delete(`/comments/${commentId}`).then(()=>{
+        alert("Comment deleted.")
+    })}
+
+export const getTopics = () => {
+    return articlesApi.get(`/topics`).then(({ data }) => {
+    return data.topics;
+        });}
