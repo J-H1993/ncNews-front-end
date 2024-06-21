@@ -5,6 +5,7 @@ import {UserContext} from './UserProvider'
 import ErrorMessage from '../components/ErrorMessage'
 
 
+
 const AddCommentsPopup = () =>{
 const {chosenUser} = useContext(UserContext)
 const {article_id} = useParams()
@@ -13,6 +14,7 @@ const [commentInputs, setCommentInputs] = useState({
    body:''
 })
 const [error, setError] = useState(null)
+const [isLoading, setIsLoading] = useState(false)
 
 const handleChange = (event) =>{
     const{name, value} = event.target
@@ -21,19 +23,21 @@ const handleChange = (event) =>{
 
 const handleSubmit = (event) => {
     event.preventDefault()
+    setIsLoading(true)
     addCommentByArticleId(article_id, commentInputs, chosenUser.username)
     .then(()=>{
     alert("Comment added successfully")
     setCommentInputs({
-    username:{username},
     body:''
     })
+    setIsLoading(false)
     })
     .catch((err)=>{
         setError({
             message:err.message,
             code:err.code
         })
+        setIsLoading(false)
     })
 }
 
@@ -46,6 +50,7 @@ const handleCloseError = () => {
 return(
     <>
     {error && <ErrorMessage message={error.message} code={error.code} onClose={handleCloseError}/>}
+    {isLoading && <p>Comment submitting....</p>}
     {chosenUser ? (
 <form onSubmit={handleSubmit}>
 <p>add comment as {chosenUser.username}</p>

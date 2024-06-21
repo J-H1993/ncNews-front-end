@@ -10,18 +10,22 @@ const CommentsPopUp = () =>{
 const [comments, setComments] = useState([])
 const {article_id} = useParams()
 const [error, setError] = useState(null)
+const [isLoading, setIsLoading] = useState(false)
 
 
 useEffect (()=>{
+    setIsLoading(true)
     getCommentByArticleId(article_id)
     .then((commentsData)=>{
         setComments(commentsData)
+        setIsLoading(false)
     })
     .catch((err)=>{
       setError({
         message:err.message,
         code:err.code
     })
+    setIsLoading(false)
     })
 }, [article_id])
 
@@ -49,8 +53,13 @@ return(
     <div>
       <h2>Comments</h2>
       {error && <ErrorMessage message={error.message} code={error.code} onClose={handleCloseError}/>}
-      {comments.map((comment)=>{
-        return <CommentCard key ={comment.comment_id} comment={comment} onDelete={deleteComment}/>}
+      {isLoading ? (
+        <p>Loading comments...</p>
+      ):(
+        comments.map((comment)=>{
+          return <CommentCard key ={comment.comment_id} comment={comment} onDelete={deleteComment}/>}
+      )
+      
       )}
 
     </div>
