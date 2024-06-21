@@ -2,7 +2,7 @@ import {useSearchParams} from 'react-router-dom'
 import { getAllArticles } from "../utils/api"
 import {useState, useEffect} from "react"
 import ArticleCard from "./ArticleCard"
-import SortBy from './SortBy'
+
 
 
 const ArticlesList = ({sort}) =>{
