@@ -19,7 +19,7 @@ const handleClear = (event) =>{
 
     return(
         <form>
-            <label htmlFor='sort by'>Sort by...</label>
+            <label htmlFor='sort by'>Sort by</label>
             <select
             id='sort-by'
             value={sortChoice}

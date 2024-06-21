@@ -3,6 +3,7 @@ import { getAllArticles } from "../utils/api"
 import {useState, useEffect} from "react"
 import ArticleCard from "./ArticleCard"
 import ErrorMessage from '../components/ErrorMessage'
+import '../App.css'
 
 
 
@@ -11,18 +12,22 @@ const [searchParams] = useSearchParams()
 const selectedTopic = searchParams.get('topic')
 const [articles, setArticles]=useState([])
 const [error, setError] = useState(null)
+const [isLoading, setIsLoading] = useState(false)
 
 
 useEffect(()=>{
+setIsLoading(true)
 getAllArticles(selectedTopic)
 .then((articleData)=>{
 setArticles(articleData)
+setIsLoading(false)
 })
 .catch((err)=>{
     setError({
         message:err.message,
         code:err.code
     })
+    setIsLoading(false)
 })
 },[selectedTopic])
 
@@ -51,10 +56,13 @@ const sortedArticles = sortArticles(articles, sort)
 return(
     <>
     <h2>Available Articles</h2>
+    {isLoading && <p>Loading articles...</p>}
     {error && <ErrorMessage message={error.message} code={error.code} onClose={handleCloseError}/>}
+    <div className='container'>
     {sortedArticles.map((article)=>{
         return <ArticleCard key={article.article_id} article={article} />
     })}
+    </div>
     </>
 )
 }

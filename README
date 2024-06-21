@@ -1,0 +1,38 @@
+# Welcome to Nc News!
+----------------------
+This app will let you view articles about various topics. It was designed to demonstrate coding techniques and practices learned on the Northcoders bootcamp. This site will enable users to interact with a server created during the backend project phase of the course. See below links for more.
+
+# Features
+-------------
+
+On the home screen a list of articles will be loaded. These articles can be sorted by topic using the Sort by drop down menu.
+
+Articles can be filtered using the Topics dropdown menu.
+
+The login button found in the header will take you to a log in screen where you may select a pre-existing user. Please note that in order to be able to post comments on an article, you must be logged in first.
+
+Clicking on an article card will take you to the articles page where you may add or remove votes from an article, view comments and, if logged in, post comments.
+
+# Relevent Links
+-------------------
+
+Full deployed version : https://fe-pj-ncnews.netlify.app
+
+The backend to the website: https://github.com/J-H1993/back_end_project
+
+
+# Note
+Please be aware that this app will require the minimum version of Node v21.4.0 to run.
+
+
+# In order to run this project locally:
+---------------------------------------
+1) Clone the repo from Github into a local directory. Do this by clicking the green code button on the repos main page and copying the link. Next cd into your chosen directory in the terminal and type git clone, then paste the url in and hit enter.
+
+2) open the project in your chosen code editor required packages can be viewed in the package.json file under 'dependencies'. These will need to be installed via npm install in the terminal.
+
+3) Enter npm run dev in the console to open up a local version of the app in the browser. For testing and access to the console right click on the page and select inspect.
+
+
+
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)

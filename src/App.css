@@ -1,33 +1,42 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.dropdown-container {
+  display: inline-block;
+  margin-bottom: 10px; 
+}
 
 .article-card {
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 16px;
-  margin: 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: left;
   transition: box-shadow 0.3s ease-in-out;
-  width: 500px; 
-  height: 500px; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #f9f9f9; 
 }
+
 .article-card:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  .article-card img {
-  max-width: 100%;
-  border-radius: 10px;
 }
 
-.article-card h3 {
-  margin-top: 0;
-}
-
-.article-card p {
-  margin: 4px 0;
-}
-}
 .article-card img {
   max-width: 100%;
   border-radius: 10px;
@@ -39,6 +48,28 @@
 
 .article-card p {
   margin: 4px 0;
+}
+
+.article-card a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.article-card a:visited {
+  color: inherit;
+}
+
+.article-card a:hover,
+.article-card a:active {
+  color: inherit; 
+}
+
+
+body {
+  padding: 16px;
+  margin: 0;
+  background-color: #fff; 
+  color: #333; 
 }
 
 .header {
@@ -107,9 +138,6 @@
 }
 .user-card:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  .article-card img {
-  max-width: 100%;
-  border-radius: 10px;
 }
 
 .user-card h3 {
@@ -119,7 +147,7 @@
 .user-card p {
   margin: 4px 0;
 }
-}
+
 .user-card img {
   max-width: 100%;
   border-radius: 10px;
