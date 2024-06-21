@@ -7,7 +7,6 @@ import { UserContext } from "../components/UserProvider";
 const UserList = () =>{
 const {setChosenUser} = useContext(UserContext)
 const [users, setUsers] = useState([])
-console.log(users)
 
 const handleChosenUser = (user) =>{
     setChosenUser(user)
