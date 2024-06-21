@@ -2,6 +2,7 @@ import {useSearchParams} from 'react-router-dom'
 import { getAllArticles } from "../utils/api"
 import {useState, useEffect} from "react"
 import ArticleCard from "./ArticleCard"
+import ErrorMessage from '../components/ErrorMessage'
 
 
 
@@ -9,6 +10,7 @@ const ArticlesList = ({sort}) =>{
 const [searchParams] = useSearchParams()
 const selectedTopic = searchParams.get('topic')
 const [articles, setArticles]=useState([])
+const [error, setError] = useState(null)
 
 
 useEffect(()=>{
@@ -17,9 +19,16 @@ getAllArticles(selectedTopic)
 setArticles(articleData)
 })
 .catch((err)=>{
- console.error(err)
+    setError({
+        message:err.message,
+        code:err.code
+    })
 })
 },[selectedTopic])
+
+const handleCloseError = () => {
+    setError(null)
+}
 
 
 const sortArticles = (articles, sortChoice) =>{
@@ -42,6 +51,7 @@ const sortedArticles = sortArticles(articles, sort)
 return(
     <>
     <h2>Available Articles</h2>
+    {error && <ErrorMessage message={error.message} code={error.code} onClose={handleCloseError}/>}
     {sortedArticles.map((article)=>{
         return <ArticleCard key={article.article_id} article={article} />
     })}
