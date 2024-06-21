@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate} from 'react-router-dom'
 import {getArticleById} from '../utils/api'
 import CommentsPopUp from '../components/CommentsPopUp'
 import Popup from '../components/Popup'
@@ -16,6 +16,7 @@ const FullArticlePage = () =>{
     const [addCommentPopup, setAddCommentPopup] = useState(false)
     const {article_id} =useParams()
     const [error, setError] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
 
     const handleVote = (change) =>{
         if(change === +1){
@@ -62,24 +63,29 @@ const FullArticlePage = () =>{
 
     const handleCloseError = () => {
         setError(null)
+        Navigate('/')
     }
 
 
     useEffect(()=>{
+        setIsLoading(true)
         getArticleById(article_id)
         .then((articleData)=>{
             setArticle(articleData)
             setVotes(articleData.votes)
+            setIsLoading(false)
         })
         .catch((err)=>{
             setError({
                 message:err.message,
                 code:err.code
             })
+            setIsLoading(false)
         })
     }, [article_id])
 
-    
+    if(isLoading) return <p>Loading....</p>
+
     return(
         <div>
             <h1>{article.title}</h1>

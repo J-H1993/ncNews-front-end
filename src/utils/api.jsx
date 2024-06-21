@@ -55,7 +55,5 @@ export const removeCommentByCommentId = (commentId) =>{
 export const getTopics = () => {
     return articlesApi.get(`/topics`).then(({ data }) => {
     return data.topics;
-        });}
-
-    })
-}
+        });
+    }
