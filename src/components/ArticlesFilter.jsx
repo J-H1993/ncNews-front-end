@@ -1,11 +1,13 @@
 import { useSearchParams} from 'react-router-dom';
 import { getTopics} from '../utils/api';
 import {useState, useEffect} from 'react'
+import ErrorMessage from '../components/ErrorMessage'
 
 
 const ArticlesFilter = ({setSelectedTopic, selectedTopic}) =>{
 const [topics, setTopic] = useState([])
 const [searchParams, setSearchParams] = useSearchParams()
+const [error, setError] = useState(null)
 
 useEffect(()=>{
     getTopics()
@@ -13,7 +15,10 @@ useEffect(()=>{
         setTopic(topicData)
     })
     .catch((err)=>{
-        console.log(err)
+        setError({
+            message:err.message,
+            code:err.code
+        })
     })
 },[])
 
@@ -39,10 +44,15 @@ const handleTopicChange = (event) => {
 const handleClearTopic = () =>{
     setSelectedTopic("")
     setSearchParams({})
+}
 
+const handleCloseError = () => {
+    setError(null)
 }
 
 return (
+    <div>
+    {error && <ErrorMessage message={error.message} code={error.code} onClose={handleCloseError}/>}
     <form>
         <label htmlFor='select topic'>Topics</label>
         <select
@@ -61,6 +71,7 @@ return (
         </select>
         <button type ='button' onClick={handleClearTopic}>Clear filter</button>
     </form>
+    </div>
 )
 }
 export default ArticlesFilter

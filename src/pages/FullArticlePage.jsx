@@ -5,6 +5,7 @@ import CommentsPopUp from '../components/CommentsPopUp'
 import Popup from '../components/Popup'
 import { voteByArticleId } from '../utils/api'
 import AddCommentsPopup from '../components/AddCommentPopup'
+import ErrorMessage from '../components/ErrorMessage'
 import '../App.css'
 
 
@@ -14,6 +15,7 @@ const FullArticlePage = () =>{
     const [PopupComments, setPopupComments]= useState(false)
     const [addCommentPopup, setAddCommentPopup] = useState(false)
     const {article_id} =useParams()
+    const [error, setError] = useState(null)
 
     const handleVote = (change) =>{
         if(change === +1){
@@ -24,7 +26,10 @@ const FullArticlePage = () =>{
             console.log('Upvote successful')
         })
         .catch((err)=>{
-            console.error(err)
+            setError({
+                message:err.message,
+                code:err.code
+            })
         })}else{ 
             let voteData = {inc_votes:-1}
         setVotes((currentVotes)=>{return currentVotes-1})
@@ -33,7 +38,10 @@ const FullArticlePage = () =>{
             console.log('Downvote successful')
         })
         .catch((err)=>{
-            console.error(err)
+            setError({
+                message:err.message,
+                code:err.code
+            })
         })
         }
     }
@@ -52,6 +60,11 @@ const FullArticlePage = () =>{
         setAddCommentPopup(false)
     }
 
+    const handleCloseError = () => {
+        setError(null)
+    }
+
+
     useEffect(()=>{
         getArticleById(article_id)
         .then((articleData)=>{
@@ -59,13 +72,18 @@ const FullArticlePage = () =>{
             setVotes(articleData.votes)
         })
         .catch((err)=>{
-            console.error(err)
+            setError({
+                message:err.message,
+                code:err.code
+            })
         })
     }, [article_id])
 
+    
     return(
         <div>
             <h1>{article.title}</h1>
+            {error && <ErrorMessage message={error.message} code={error.code} onClose={handleCloseError}/>}
             <h2>Author: {article.author}</h2>
             <img src={article.article_img_url}/>
             <p>{article.body}</p>

@@ -2,6 +2,7 @@ import {useState, useContext} from 'react'
 import { addCommentByArticleId } from '../utils/api'
 import { useParams } from 'react-router-dom' 
 import {UserContext} from './UserProvider'
+import ErrorMessage from '../components/ErrorMessage'
 
 
 const AddCommentsPopup = () =>{
@@ -11,6 +12,7 @@ const [commentInputs, setCommentInputs] = useState({
    username:'',
    body:''
 })
+const [error, setError] = useState(null)
 
 const handleChange = (event) =>{
     const{name, value} = event.target
@@ -28,13 +30,22 @@ const handleSubmit = (event) => {
     })
     })
     .catch((err)=>{
-        console.log(err)
+        setError({
+            message:err.message,
+            code:err.code
+        })
     })
 }
+
+const handleCloseError = () => {
+    setError(null)
+}
+
 
 
 return(
     <>
+    {error && <ErrorMessage message={error.message} code={error.code} onClose={handleCloseError}/>}
     {chosenUser ? (
 <form onSubmit={handleSubmit}>
 <p>add comment as {chosenUser.username}</p>
