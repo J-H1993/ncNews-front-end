@@ -1,5 +1,9 @@
 body {
   font-family: 'Roboto', sans-serif;
+  padding: 16px;
+  margin: 0;
+  background-color: #fff; 
+  color: #333; 
 }
 
 .container {
@@ -12,7 +16,6 @@ body {
 .homepage-container {
   display: flex;
   flex-direction: column;
- 
 }
 
 .dropdown-container {
@@ -64,42 +67,89 @@ body {
   color: inherit; 
 }
 
-
-body {
-  padding: 16px;
-  margin: 0;
-  background-color: #fff; 
-  color: #333; 
-}
-
 .header {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
   background-color: #8B0000;
   color: #FFFFFF; 
-  text-align: center;
-  padding: 10px 0;
+  padding: 10px 20px;
+  position: relative;
 }
 
 .logo {
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
-}
-
-.user-logged {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  margin: 0;
+  font-size: 2rem; 
 }
 
 .nav-link {
   color: #FFFFFF; 
-  padding: 10px; 
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 1rem;
   transition: background-color 0.3s ease; 
 }
 
 .nav-link:hover,
 .nav-link:active {
-    background-color: #CCCCCC;
+  background-color: #6B0000;
+  border-radius: 4px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 8px 12px;
+  background-color: #5C0000;
+  border: 2px solid #8B0000;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #FFFFFF; 
+}
+
+.user-profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.login-button {
+  background: linear-gradient(135deg, #a02b2a, #8B0000);
+  color: #fff;
+  border: 1px solid #8B0000;
+  padding: 10px 20px;
+  border-radius: 25px; 
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:hover, 
+.user-button:hover {
+  opacity: 0.8;
 }
 
 .button {
@@ -121,7 +171,6 @@ body {
   background-color: #6B0000;
 }
 
-
 .user-card {
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -136,21 +185,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .user-card:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.user-card h3 {
-  margin-top: 0;
-}
-
-.user-card p {
-  margin: 4px 0;
-}
-
-.user-card img {
-  max-width: 100%;
-  border-radius: 10px;
 }
 
 .user-card h3 {

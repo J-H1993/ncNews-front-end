@@ -11,13 +11,19 @@ const Header = () =>{
             <nav>
             <Link to ="/" className='nav-link'>Home</Link>
             </nav>
+            <div className='user-info'>
             {chosenUser ? (
-                <Link to='/users'><button>{chosenUser.username}</button></Link>
+                <Link to='/users'>
+                    <button className='user-button'>
+                        <img src={chosenUser.avatar_url} alt={`${chosenUser.username}'s profile`} className='user-profile-pic' />
+                        <span>{chosenUser.username}</span>
+                        </button>
+                    </Link>
             ):(
-                <Link to='/users'><button>login</button></Link>
+                <Link to='/users'><button className='login-button'>login</button></Link>
             )}
-            
-        </header>
+        </div>
+    </header>
     )
 
 }

@@ -35,6 +35,7 @@ const deleteComment = (comment_id) =>{
     setComments(comments.filter((comment)=>{
       return comment.comment_id !== comment_id
     }))
+    alert('Comment deleted')
   })
   .catch((err)=>{
     setError({
